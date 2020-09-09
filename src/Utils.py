@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def showImage(image, save_to: str):
+def saveImage(image, save_to: str):
     image = np.array(image, dtype='float')
     pixels = image.reshape((28, 28))
     plt.imshow(pixels)
