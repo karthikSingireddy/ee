@@ -45,43 +45,13 @@ def trainModel(model, train_images, train_labels):
         batch_size=32
     )
 
-def evaluateModel(model):
+def evaluateModel(model, test_images, test_labels):
     model.evaluate(
         test_images,
         to_categorical(test_labels)
     )
 
 def predictImages(model, test_images):
-    predictions = model.predict(test_images[:5])
+    predictions = model.predict(test_images[:100])
 
     return np.argmax(predictions, axis=1)
-
-# def showImage(image):
-#     image = np.array(image, dtype='float')
-#     pixels = image.reshape((28, 28))
-#     plt.imshow(pixels)
-#     plt.savefig('test.png', transparent=True, bbox_inches='tight')
-
-(train_images, train_labels, test_images, test_labels) = loadDataset()
-
-
-
-(train_images, test_images) = normizeImages(train_images, test_images)
-
-
-
-# saveImage(test_images[68], "test2.png")
-
-model = buildModel()
-compileModel(model)
-
-trainModel(model, train_images, train_labels)
-
-evaluateModel(model)
-
-# # to save model weights, uncomment following line
-# # model.save_weights('model.5')
-
-predictions = predictImages(model, test_images)
-print(predictions)
-
