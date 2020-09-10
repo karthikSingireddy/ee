@@ -6,12 +6,15 @@ import math
 IMAGE_WIDTH = 28
 IMAGE_HEIGHT = 28
 
+IMAGE_DIMENSIONS = (28, 28)
+
+
 def averageBlur2x2(imgp):
     img = copy(imgp)
-    img = img.reshape((28, 28))
+    img = img.reshape(IMAGE_DIMENSIONS)
 
-    for x in range(0, 26, 2):
-        for y in range(0, 26, 2):
+    for x in range(0, IMAGE_WIDTH - 2, 2):
+        for y in range(0, IMAGE_HEIGHT - 2, 2):
             top_left = img[x][y]
             top_right = img[x + 1][y]
             bottom_left = img[x][y + 1]
@@ -28,10 +31,10 @@ def averageBlur2x2(imgp):
 
 def averageBlur2x1Vertical(imgp):
     img = copy(imgp)
-    img = img.reshape((28, 28))
+    img = img.reshape(IMAGE_DIMENSIONS)
 
-    for y in range (0, 26, 2):
-        for x in range(0, 27):
+    for y in range (0, IMAGE_HEIGHT - 2, 2):
+        for x in range(0, IMAGE_WIDTH - 1):
             top  = img[y][x]
             bottom = img[y + 1][x]
 
@@ -44,10 +47,10 @@ def averageBlur2x1Vertical(imgp):
 
 def averageBlur2x1Horizontal(imgp):
     img = copy(imgp)
-    img = img.reshape((28, 28))
+    img = img.reshape(IMAGE_DIMENSIONS)
 
-    for y in range(0, 27):
-        for x in range(0, 26, 2):
+    for y in range(0, IMAGE_HEIGHT - 1):
+        for x in range(0, IMAGE_WIDTH - 2, 2):
             left = img[y][x]
             right = img[y][x + 1]
 
@@ -59,10 +62,10 @@ def averageBlur2x1Horizontal(imgp):
 
 def keepMax2x2(imgp):
     img = copy(imgp)
-    img = img.reshape((28, 28))
+    img = img.reshape(IMAGE_DIMENSIONS)
 
-    for y in range(0, 26, 2):
-        for x in range(0, 26, 2):
+    for y in range(0, IMAGE_HEIGHT - 2, 2):
+        for x in range(0, IMAGE_WIDTH - 2, 2):
             top_left = img[y][x]
             top_right = img[y + 1][x]
             bottom_left = img[y][x + 1]
@@ -78,10 +81,10 @@ def keepMax2x2(imgp):
 
 def keepMax2x1Horizontal(imgp):
     img = copy(imgp)
-    img = img.reshape((28, 28))
+    img = img.reshape(IMAGE_DIMENSIONS)
 
     for y in range(0, 27):
-        for x in range(0, 26, 2):
+        for x in range(0, IMAGE_WIDTH - 2, 2):
             left = img[y][x]
             right = img[y][x + 1]
 
@@ -93,9 +96,9 @@ def keepMax2x1Horizontal(imgp):
 
 def keepMax2x1Vertical(imgp):
     img = copy(imgp)
-    img = img.reshape((28, 28))
+    img = img.reshape(IMAGE_DIMENSIONS)
 
-    for y in range (0, 26, 2):
+    for y in range (0, IMAGE_HEIGHT - 2, 2):
         for x in range(0, 27):
             top  = img[y][x]
             bottom = img[y + 1][x]

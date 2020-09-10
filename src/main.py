@@ -54,24 +54,47 @@ def printImgAscii(img):
         print()
     print('\n\n\n')
 
-saveImage(img, "img/original.png")
+# saveImage(img, "img/original.png")
 
-imgb = averageBlur2x2(img)
-saveImage(imgb, 'img/averageBlur2x2.png')
+# imgb = averageBlur2x2(img)
+# saveImage(imgb, 'img/averageBlur2x2.png')
 
-imgb = averageBlur2x1Horizontal(img)
-saveImage(imgb, "img/averageBlur2x1Horizontal.png")
+# imgb = averageBlur2x1Horizontal(img)
+# saveImage(imgb, "img/averageBlur2x1Horizontal.png")
 
-imgb = averageBlur2x1Vertical(img)
-saveImage(imgb, 'img/averageBlur2x1Vertical.png')
+# imgb = averageBlur2x1Vertical(img)
+# saveImage(imgb, 'img/averageBlur2x1Vertical.png')
 
-imgb = keepMax2x2(img)
-saveImage(imgb, 'img/keepMax2x2.png')
+# imgb = keepMax2x2(img)
+# saveImage(imgb, 'img/keepMax2x2.png')
 
-imgb = keepMax2x1Vertical(img)
-saveImage(imgb, 'img/keepMax2x1Vertical.png')
+# imgb = keepMax2x1Vertical(img)
+# saveImage(imgb, 'img/keepMax2x1Vertical.png')
 
-imgb = keepMax2x1Horizontal(img)
-saveImage(imgb, 'img/keepMax2x1Horizontal.png')
+# imgb = keepMax2x1Horizontal(img)
+# saveImage(imgb, 'img/keepMax2x1Horizontal.png')
+num = 0
+for img in test_images[:3]:
 
 
+    saveImage(img, f"img/big/{str(num)}original.png")
+
+    imgb = averageBlur2x2(img)
+    saveImage(imgb, f'img/big/{str(num)}averageBlur2x2.png')
+
+    imgb = averageBlur2x1Horizontal(img)
+    saveImage(imgb, f"img/big/{str(num)}averageBlur2x1Horizontal.png")
+
+    imgb = averageBlur2x1Vertical(img)
+    saveImage(imgb, f'img/big/{str(num)}averageBlur2x1Vertical.png')
+
+    imgb = keepMax2x2(img)
+    saveImage(imgb, f'img/big/{str(num)}keepMax2x2.png')
+
+    imgb = keepMax2x1Vertical(img)
+    saveImage(imgb, f'img/big/{str(num)}keepMax2x1Vertical.png')
+
+    imgb = keepMax2x1Horizontal(img)
+    saveImage(imgb, f'img/big/{str(num)}keepMax2x1Horizontal.png')
+
+    num += 1
