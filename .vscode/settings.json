@@ -1,0 +1,31 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "ee",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "gcp-sql-server",
+            "password": "hello",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "34.82.78.182",
+            "username": "comp"
+        },
+        {
+            "database": "ee",
+            "driver": "MySQL",
+            "group": "ee",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "ee-server",
+            "password": "hello",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "35.247.41.240",
+            "username": "root"
+        }
+    ]
+}
