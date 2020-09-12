@@ -27,6 +27,7 @@ def averageBlur2x2(imgp):
             img[x][y + 1] = average
             img[x + 1][y + 1] = average
 
+    img = img.reshape((784,))
     return img
 
 def averageBlur2x1Vertical(imgp):
@@ -42,7 +43,7 @@ def averageBlur2x1Vertical(imgp):
 
             img[y][x] = average
             img[y + 1][x] = average
-    
+    img = img.reshape((784,))
     return img
 
 def averageBlur2x1Horizontal(imgp):
@@ -58,6 +59,7 @@ def averageBlur2x1Horizontal(imgp):
 
             img[y][x] = average
             img[y][x + 1] = average
+    img = img.reshape((784,))
     return img
 
 def keepMax2x2(imgp):
@@ -77,6 +79,7 @@ def keepMax2x2(imgp):
             img[y + 1][x] = maxVal
             img[y][x + 1] = maxVal
             img[y + 1][x + 1] = maxVal
+    img = img.reshape((784,))
     return img
 
 def keepMax2x1Horizontal(imgp):
@@ -92,6 +95,7 @@ def keepMax2x1Horizontal(imgp):
 
             img[y][x] = maxVal
             img[y][x + 1] = maxVal
+    img = img.reshape((784,))
     return img
 
 def keepMax2x1Vertical(imgp):
@@ -107,5 +111,5 @@ def keepMax2x1Vertical(imgp):
 
             img[y][x] = maxVal
             img[y + 1][x] = maxVal
-    
+    img = img.reshape((784,))
     return img
