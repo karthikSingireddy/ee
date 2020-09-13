@@ -52,6 +52,21 @@ def evaluateModel(model, test_images, test_labels):
     )
 
 def predictImages(model, test_images):
-    predictions = model.predict(test_images[:100])
+    predictions = model.predict(test_images)
 
     return np.argmax(predictions, axis=1)
+
+def predictImage(model, image):
+    prediction = model.predict(np.array([image]))
+
+    # print(type(prediction))
+
+    # print(float(prediction[0][np.argmax(prediction, axis=1)[0]]))
+    
+    
+
+    # for num in prediction:
+    #     # print(f"{float(num)} ")
+    #     print(f"{num}   {type(num)}, ")
+
+    return np.argmax(prediction, axis=1)[0], float(prediction[0][np.argmax(prediction, axis=1)[0]])

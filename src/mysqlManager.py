@@ -3,7 +3,7 @@ import numpy as np
 import Utils
 
 class Image:
-    def __init__(self, img: str, image_index: int, blur_type: str):
+    def __init__(self, img: str, image_index: int, blur_type: str, value: int):
         self.image_index = image_index
         self.blur_type = blur_type
 
@@ -12,6 +12,7 @@ class Image:
         for num in vals:
             floatVals.append(float(num))
         self.img = np.array(floatVals)
+        self.value = value
 
 
     def __str__(self):
@@ -30,7 +31,7 @@ class MySqlWrapper:
         cursor = self.db.cursor()
         if image_index == -1 and blur_type == "":
             sql="""
-                SELECT img, image_index, blur_type
+                SELECT img, image_index, blur_type, value
                 FROM images
                 LIMIT %s;
             """
@@ -40,11 +41,17 @@ class MySqlWrapper:
 
             results = cursor.fetchall()
 
-            return results
+            images = []
+
+            for result in results:
+                images.append(Image(result[0], result[1], result[2], result[3]))
+            
+            return images
+
         
         if image_index != -1 and blur_type == "":
             sql="""
-                SELECT img, blur_type
+                SELECT img, blur_type, value
                 FROM images
                 WHERE image_index = %s
                 LIMIT %s;
@@ -57,13 +64,13 @@ class MySqlWrapper:
             images = []
 
             for result in results:
-                images.append(Image(result[0], image_index, result[1]))
+                images.append(Image(result[0], image_index, result[1], result[2]))
 
             return images
 
         if image_index != -1 and blur_type != "":
             sql="""
-                SELECT img
+                SELECT img, value
                 FROM images
                 WHERE image_index = %s AND blur_type = %s
                 LIMIT %s;
@@ -72,11 +79,17 @@ class MySqlWrapper:
 
             cursor.execute(sql, params)
             results = cursor.fetchall()
-            return results
+
+            images = []
+
+            for result in results:
+                images.append(Image(result[0], image_index, blur_type, result[1]))
+
+            return images
         
         else:
             sql = """
-                SELECT img, image_index
+                SELECT img, image_index, value
                 FROM images
                 WHERE blur_type = %s
                 LIMIT %s;
@@ -85,8 +98,13 @@ class MySqlWrapper:
 
             cursor.execute(sql, params)
             results = cursor.fetchall()
-            return results
 
+            images = []
+
+            for result in results:
+                images.append(Image(result[0], result[1], blur_type, result[2]))
+
+            return images
     def updateImage(self, image_index: int, blur_type: str, img: str):
         sql = """
                 UPDATE images
@@ -111,6 +129,3 @@ class MySqlWrapper:
 
         cursor.execute(sql, params)
         self.db.commit()
-
-
-
