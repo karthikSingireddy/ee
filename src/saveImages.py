@@ -4,7 +4,7 @@ from Utils import saveImage
 
 sql = mysqlManager.MySqlWrapper()
 
-img = sql.getImage(image_index= 62 )
+img = sql.getImage(image_index= 96 )
 
 for i in img:
     saveImage(i.img, f"src/img/testfail/{i.blur_type}")
